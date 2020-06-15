@@ -1,0 +1,10 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+
+/database-learning-game.iml
+/misc.xml
+/modules.xml
+/vcs.xml
