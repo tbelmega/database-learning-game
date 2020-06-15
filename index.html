@@ -4,21 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Database Learning Game</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link href="css/styles.css" rel="stylesheet">
 </head>
 <body>
-<div id="query-builder">
-    <span>Wähle alle Karten, bei denen...</span>
-    <ul id="criteria-list" class="criteria-list"></ul>
-    <select id="property-select">
-        <option>-Auswählen-</option>
-    </select>
-    <span>=</span>
-    <select id="value-select">
-        <option>-Auswählen-</option>
-    </select>
+<div class="container">
+    <div id="query-builder">
+        <h3>Wähle alle Karten, bei denen...</h3>
+        <ul id="criteria-list" class="criteria-list"></ul>
+        <select id="property-select">
+            <option>-Auswählen-</option>
+        </select>
+        <span>=</span>
+        <select id="value-select">
+            <option>-Auswählen-</option>
+        </select>
+    </div>
+    <div id="board" class="card-board"></div>
 </div>
-<div id="board" class="card-board"></div>
 <script src="script/utils.js"></script>
 <script src="script/constants.js"></script>
 <script src="script/ui.js"></script>
