@@ -22,3 +22,12 @@
 .card.fade {
     opacity: 0.2;
 }
+
+ul.criteria-list {
+    list-style: none;
+}
+
+ul.criteria-list > li > * {
+    display: inline-block;
+    margin-right: 4px;
+}
