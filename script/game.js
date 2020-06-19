@@ -1,15 +1,24 @@
+
 /* fill the board with 12 new random cards */
 function shuffleUpAndDeal() {
-    const board = [];
-    for (let i = 0; i < 12; i++) {
-        board.push({
-            color: randomFrom(COLORS),
-            shape: randomFrom(SHAPES),
-            count: randomFrom(COUNT),
-            fill: randomFrom(FILLS),
-            match: true
-        })
+
+    /* check if card with same ID is already on the board. otherwise add card to board.*/
+    function addCardIfNotYetOnBoard(card, board) {
+        const positionOfCardOnBoard = board.findIndex(element => element.id === card.id, card);
+
+        if (positionOfCardOnBoard === NOT_THERE)
+            board.push({
+                ...card,
+                match: true
+            })
     }
+
+    const board = [];
+    do {
+        let card = randomFrom(ALL_CARDS);
+        addCardIfNotYetOnBoard(card, board);
+    } while (board.length < 12);
+
     return board;
 }
 
@@ -28,6 +37,7 @@ function runGame() {
 
     // represents the query selection criteria currently set by the user
     let criteria = {};
+    let score = 0;
 
     const board = shuffleUpAndDeal();
 
@@ -56,7 +66,10 @@ function runGame() {
         let fill = allSame("fill") || allDifferent("fill");
         let count = allSame("count") || allDifferent("count");
 
-        return shape && color && fill && count;
+        return {
+            isSet: shape && color && fill && count,
+            cards: [card1, card2, card3]
+        };
     }
 
     function update() {
@@ -64,7 +77,10 @@ function runGame() {
         drawBoard(board);
         drawCriteriaList(criteria);
         let setFound = checkIfSetFound(board);
-        if (setFound) alert("Set found!");
+        if (setFound.isSet) {
+            score += 50;
+            drawScore(score);
+        }
     }
 
     update();
