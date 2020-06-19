@@ -22,16 +22,31 @@
                 <option>-Auswählen-</option>
             </select>
         </div>
+        <div id="set-found-continue" class="mb-2 d-none">
+            <h3>Set!</h3>
+            <p>Super, du hast ein Set gefunden.</p>
+            <button id="continue"
+                    class="btn btn-primary">
+                Weiter
+            </button>
+        </div>
         <div>
-            <span>Punkte:</span>
-            <span id="score"></span>
+            <div>
+                <span>Punkte:</span>
+                <span id="score"></span>
+            </div>
+            <div>
+                <button id="add-cards" class="btn btn-outline-primary">Mehr Karten</button>
+                <button id="remove-cards" class="btn btn-outline-primary">Weniger Karten</button>
+            </div>
         </div>
     </div>
     <div id="board" class="card-board"></div>
 </div>
+<!-- don't change the order of the scripts. later scripts rely on earlier scripts to be loaded first. -->
 <script src="script/utils.js"></script>
 <script src="script/constants.js"></script>
-<script src="script/ui/criteriaList.js"></script>
+<script src="script/ui/queryBuilder.js"></script>
 <script src="script/ui/score.js"></script>
 <script src="script/ui/board.js"></script>
 <script src="script/game.js"></script>

@@ -10,12 +10,20 @@
     flex-wrap: wrap;
 }
 
+.card-board-9 {
+    max-width: 330px;
+}
+
 .card-board-12 {
     max-width: 440px;
 }
 
 .card-board-15 {
     max-width: 550px;
+}
+
+.card-board-18 {
+    max-width: 660px;
 }
 
 .card {

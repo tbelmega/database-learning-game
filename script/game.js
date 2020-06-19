@@ -1,6 +1,6 @@
 
 /* fill the board with 12 new random cards */
-function shuffleUpAndDeal() {
+function shuffleUpAndDeal(board, maxNumberOfCards) {
 
     /* check if card with same ID is already on the board. otherwise add card to board.*/
     function addCardIfNotYetOnBoard(card, board) {
@@ -13,11 +13,10 @@ function shuffleUpAndDeal() {
             })
     }
 
-    const board = [];
     do {
         let card = randomFrom(ALL_CARDS);
         addCardIfNotYetOnBoard(card, board);
-    } while (board.length < 12);
+    } while (board.length < maxNumberOfCards);
 
     return board;
 }
@@ -39,7 +38,7 @@ function runGame() {
     let criteria = {};
     let score = 0;
 
-    const board = shuffleUpAndDeal();
+    let board = shuffleUpAndDeal([], 12);
 
     /* a set is found when there are only 3 cards remaining, which have ALL SAME or ALL DIFFERENT values in all properties */
     function checkIfSetFound() {
@@ -72,20 +71,55 @@ function runGame() {
         };
     }
 
+    function removeFoundSetFromBoard(cards) {
+        const cardIdsToRemove = cards.map(card => card.id);
+        board = board.filter(card => cardIdsToRemove.indexOf(card.id) === NOT_THERE);
+        shuffleUpAndDeal(board, 12);
+        toggleQueryBuilder();
+        update();
+    }
+
+    function resetCriteria() {
+        criteria = {};
+        initPropertySelect(criteria, update);
+    }
+
     function update() {
         filterBoard(board, criteria);
         drawBoard(board);
+        drawScore(score);
         drawCriteriaList(criteria);
         let setFound = checkIfSetFound(board);
         if (setFound.isSet) {
-            score += 50;
+            score += SCORE_FOR_FOUND_SET;
             drawScore(score);
+            resetCriteria();
+            toggleQueryBuilder(() =>
+                removeFoundSetFromBoard(setFound.cards)
+            );
+            update();
         }
     }
 
     update();
     initPropertySelect(criteria, update);
-
+    initAddCardsButton(() => {
+        if (board.length < MAX_CARDS_ON_BOARD) {
+            shuffleUpAndDeal(board, board.length + 3);
+            score -= SCORE_PENALTY_FOR_MORE_CARDS;
+            update();
+        }
+    });
+    initRemoveCardsButton(() => {
+        if (board.length > MIN_CARDS_ON_BOARD) {
+            board.shift();
+            board.shift();
+            board.shift();
+            console.log(board.length)
+            score -= SCORE_PENALTY_FOR_MORE_CARDS;
+            update();
+        }
+    });
 }
 
 runGame();

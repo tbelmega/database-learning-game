@@ -28,3 +28,8 @@ for (const color of COLORS) {
 
 
 const NOT_THERE = -1;
+
+const SCORE_FOR_FOUND_SET = 30;
+const SCORE_PENALTY_FOR_MORE_CARDS = 20;
+const MAX_CARDS_ON_BOARD = 18;
+const MIN_CARDS_ON_BOARD = 6;

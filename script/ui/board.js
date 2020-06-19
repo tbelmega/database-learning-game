@@ -3,6 +3,8 @@ function drawBoard(board) {
     const BOARD_UI = document.getElementById("board");
 
     BOARD_UI.innerHTML = null;
+    BOARD_UI.classList.remove(...BOARD_UI.classList);
+    BOARD_UI.classList.add('card-board');
     BOARD_UI.classList.add('card-board-' + board.length);
 
     board.forEach((card) => {

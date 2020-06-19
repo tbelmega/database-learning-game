@@ -10,6 +10,17 @@ function drawCriteriaList(criteria) {
     });
 }
 
+/* toggle between displaying the query builder or the set-found section */
+function toggleQueryBuilder(continueFunction) {
+    const QUERY_BUILDER_UI = document.getElementById("query-builder");
+    const SET_FOUND_CONTINUE_UI = document.getElementById("set-found-continue");
+    const CONTINUE_BUTTON = document.getElementById("continue");
+
+    QUERY_BUILDER_UI.classList.toggle("d-none");
+    SET_FOUND_CONTINUE_UI.classList.toggle("d-none");
+    CONTINUE_BUTTON.onclick = continueFunction;
+}
+
 /* fill the property dropdown with the available properties in the game (COLOR, SHAPE, COUNT, FILL)*/
 function initPropertySelect(criteria, update) {
     const propertySelect = document.getElementById("property-select");
