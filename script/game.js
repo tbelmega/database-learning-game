@@ -1,4 +1,3 @@
-
 /* fill the board with 12 new random cards */
 function shuffleUpAndDeal(board, maxNumberOfCards) {
 
@@ -76,7 +75,6 @@ function runGame() {
         board = board.filter(card => cardIdsToRemove.indexOf(card.id) === NOT_THERE);
         shuffleUpAndDeal(board, 12);
         toggleQueryBuilder();
-        update();
     }
 
     function resetCriteria() {
@@ -99,11 +97,11 @@ function runGame() {
         if (setFound.isSet) {
             score += SCORE_FOR_FOUND_SET;
             drawScore(score);
-            resetCriteria();
-            toggleQueryBuilder(() =>
-                removeFoundSetFromBoard(setFound.cards)
-            );
-            update();
+            toggleQueryBuilder(() => {
+                removeFoundSetFromBoard(setFound.cards);
+                resetCriteria();
+                update();
+            });
         }
     }
 
