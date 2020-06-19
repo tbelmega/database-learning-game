@@ -10,11 +10,11 @@ function drawCriteriaList(criteria, removeCriteriaFn) {
         return removeBtn;
     }
 
-    Object.entries(criteria).forEach(item => {
+    criteria.forEach(item => {
         let entryNode = document.createElement('li');
         entryNode.classList.add('query-criteria');
         let criteriaNode = document.createElement('div');
-        criteriaNode.innerHTML = `<span>${item[0]}</span><span>=</span><span>${item[1]}</span>`;
+        criteriaNode.innerHTML = `<span>${item.property}</span><span>=</span><span>${item.value}</span>`;
         entryNode.appendChild(criteriaNode);
         entryNode.appendChild(createRemoveButton(() => removeCriteriaFn(criteria, item)));
         CRITERIA_LIST_UI.appendChild(entryNode)
@@ -64,7 +64,7 @@ function populateValueSelect(property, criteria, update) {
     });
 
     valueSelect.onchange = (event) => {
-        criteria[property] = event.target.value;
+        criteria.push({'property': property, 'value': event.target.value});
         update();
         initPropertySelect(criteria, update);
         resetValueSelect();

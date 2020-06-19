@@ -24,9 +24,9 @@ function shuffleUpAndDeal(board, maxNumberOfCards) {
 /* update the "match" property of every card according to current filters */
 function filterBoard(board, criteria) {
     board.forEach((card) => {
-        card.match = Object.entries(criteria).every(item => {
-            let cardValue = card[item[0].toLowerCase()];
-            let criteriaValue = item[1];
+        card.match = criteria.every(item => {
+            let cardValue = card[item.property.toLowerCase()];
+            let criteriaValue = item.value;
             return cardValue === criteriaValue
         });
     });
@@ -35,7 +35,7 @@ function filterBoard(board, criteria) {
 function runGame() {
 
     // represents the query selection criteria currently set by the user
-    let criteria = {};
+    let criteria = [];
     let score = 0;
 
     let board = shuffleUpAndDeal([], 12);
@@ -80,12 +80,13 @@ function runGame() {
     }
 
     function resetCriteria() {
-        criteria = {};
+        criteria = [];
         initPropertySelect(criteria, update);
     }
 
     function removeCriteria(criteria, item) {
-        delete criteria[item[0]];
+        let itemToDelete = criteria.indexOf((c) => c.property === item.property && c.value === item.value);
+        criteria.splice(itemToDelete, 1);
         update();
     }
 
