@@ -1,12 +1,23 @@
 /* draw the criteria list to screen */
-function drawCriteriaList(criteria) {
+function drawCriteriaList(criteria, removeCriteriaFn) {
     const CRITERIA_LIST_UI = document.getElementById("criteria-list");
     CRITERIA_LIST_UI.innerHTML = '';
 
+    function createRemoveButton(removeCriteriaFn) {
+        const removeBtn = document.createElement('span');
+        removeBtn.classList.add('close-btn');
+        removeBtn.onclick = removeCriteriaFn;
+        return removeBtn;
+    }
+
     Object.entries(criteria).forEach(item => {
-        let criteriaNode = document.createElement('li');
+        let entryNode = document.createElement('li');
+        entryNode.classList.add('query-criteria');
+        let criteriaNode = document.createElement('div');
         criteriaNode.innerHTML = `<span>${item[0]}</span><span>=</span><span>${item[1]}</span>`;
-        CRITERIA_LIST_UI.appendChild(criteriaNode)
+        entryNode.appendChild(criteriaNode);
+        entryNode.appendChild(createRemoveButton(() => removeCriteriaFn(criteria, item)));
+        CRITERIA_LIST_UI.appendChild(entryNode)
     });
 }
 

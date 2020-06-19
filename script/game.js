@@ -84,11 +84,16 @@ function runGame() {
         initPropertySelect(criteria, update);
     }
 
+    function removeCriteria(criteria, item) {
+        delete criteria[item[0]];
+        update();
+    }
+
     function update() {
         filterBoard(board, criteria);
         drawBoard(board);
         drawScore(score);
-        drawCriteriaList(criteria);
+        drawCriteriaList(criteria, removeCriteria);
         let setFound = checkIfSetFound(board);
         if (setFound.isSet) {
             score += SCORE_FOR_FOUND_SET;

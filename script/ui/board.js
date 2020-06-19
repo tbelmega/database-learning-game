@@ -17,6 +17,7 @@ function drawBoard(board) {
 
         if (card.match) {
             cardNode.classList.remove("fade");
+            cardNode.classList.add('elevate')
         } else {
             cardNode.classList.add("fade");
         }

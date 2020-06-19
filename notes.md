@@ -5,3 +5,5 @@
 - Initialisierung von onclick-Funktionen: Wäre schöner direkt im HTML, aber dort existieren die Funktionen noch nicht
 
 - UI-Details von Hauptprogramm abgekapselt, aber game.js hat den Kontrollfluss und muss UI-Elemente aktiv steuern 
+
+- Typschwache Sprache erlaubt schnelles programmieren (inline-Objekterzeugung), aber verringert Wartbarkeit (Bsp: criteria-Objekt zu Array ändern)
