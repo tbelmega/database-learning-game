@@ -68,3 +68,11 @@ select {
     border-radius: 4px;
     padding: 4px;
 }
+
+a.navbar-brand {
+    height: 2rem;
+    width: 2rem;
+    background-image: url('../images/cards.png');
+    background-size: cover;
+    filter: invert(100%);
+}
