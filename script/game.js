@@ -114,7 +114,7 @@ function runGame() {
                 updateClock(gameClockSeconds);
                 if (gameClockSeconds <= 0) {
                     clearInterval(gameClock);
-                    backToMenu();
+                    backToMenu(score);
                 }
             },
             1000
