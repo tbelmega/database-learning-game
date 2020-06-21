@@ -12,3 +12,11 @@ function initRemoveCardsButton(removeCardsFunction) {
     const REMOVE_CARD_BUTTON = document.getElementById("remove-cards");
     REMOVE_CARD_BUTTON.onclick = removeCardsFunction;
 }
+
+function updateClock(gameClockSeconds) {
+    const CLOCK_UI = document.getElementById("game-clock");
+    const minutes = Math.floor(gameClockSeconds / 60);
+    let seconds = gameClockSeconds % 60;
+    if (seconds < 10) seconds = '0' + seconds
+    CLOCK_UI.innerText = `${minutes}:${seconds}`;
+}

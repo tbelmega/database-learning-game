@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link href="css/styles.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4 elevate">
@@ -17,7 +18,7 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav mr-auto" id="navbar-nav">
             <li class="nav-item">
                 <a class="nav-link" href="#">Anleitung</a>
             </li>
@@ -33,7 +34,13 @@
         </ul>
     </div>
 </nav>
-<div class="container">
+<div class="container" id="game-menu">
+    <div class="d-flex flex-column align-items-center">
+        <h3>Finde in 5 Minuten so viele Sets wie du kannst!</h3>
+        <button class="btn btn-primary" id="start-game">Start</button>
+    </div>
+</div>
+<div class="container d-none" id="game-running">
     <div class="d-flex justify-content-between">
         <div id="query-builder" class="mb-2">
             <h3>Wähle alle Karten, bei denen...</h3>
@@ -60,6 +67,10 @@
                 <span id="score"></span>
             </div>
             <div>
+                <span>Zeit:</span>
+                <span id="game-clock">0:00</span>
+            </div>
+            <div>
                 <button id="add-cards" class="btn btn-outline-primary">Mehr Karten</button>
                 <button id="remove-cards" class="btn btn-outline-primary">Weniger Karten</button>
             </div>
@@ -73,6 +84,7 @@
 <script src="script/ui/queryBuilder.js"></script>
 <script src="script/ui/score.js"></script>
 <script src="script/ui/board.js"></script>
+<script src="script/ui/gameMenu.js"></script>
 <script src="script/game.js"></script>
 </body>
 </html>

@@ -36,6 +36,8 @@ function runGame() {
     // represents the query selection criteria currently set by the user
     let criteria = [];
     let score = 0;
+    let gameClockSeconds = MAX_GAME_TIME_SECONDS;
+    let gameClock;
 
     let board = shuffleUpAndDeal([], 12);
 
@@ -105,7 +107,22 @@ function runGame() {
         }
     }
 
+    function startClock() {
+        gameClockSeconds = MAX_GAME_TIME_SECONDS;
+        gameClock = setInterval(() => {
+                gameClockSeconds -= 1;
+                updateClock(gameClockSeconds);
+                if (gameClockSeconds <= 0) {
+                    clearInterval(gameClock);
+                    backToMenu();
+                }
+            },
+            1000
+        );
+    }
+
     update();
+    updateClock(gameClockSeconds);
     initPropertySelect(criteria, update);
     initAddCardsButton(() => {
         if (board.length < MAX_CARDS_ON_BOARD) {
@@ -124,6 +141,8 @@ function runGame() {
             update();
         }
     });
+    startClock();
 }
 
-runGame();
+
+initGameMenu(runGame);
