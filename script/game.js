@@ -22,11 +22,18 @@ function shuffleUpAndDeal(board, maxNumberOfCards) {
 
 /* update the "match" property of every card according to current filters */
 function filterBoard(board, criteria) {
-    board.forEach((card) => {
+    board.forEach(card => {
         card.match = criteria.every(item => {
             let cardValue = card[item.property.toLowerCase()];
             let criteriaValue = item.value;
-            return cardValue === criteriaValue
+            switch (item.operator) {
+                case '=':
+                    return cardValue === criteriaValue;
+                case '!=':
+                    return cardValue !== criteriaValue;
+                default:
+                    throw new Error('Unhandled Operator');
+            }
         });
     });
 }

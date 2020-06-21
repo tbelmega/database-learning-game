@@ -48,6 +48,10 @@ ul.criteria-list .query-criteria {
     align-items: center;
 }
 
+ul.criteria-list .query-criteria > div > * {
+    margin-right: 4px;
+}
+
 ul.criteria-list > li > * {
     margin-right: 4px;
 }

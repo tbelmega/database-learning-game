@@ -14,7 +14,7 @@ function drawCriteriaList(criteria, removeCriteriaFn) {
         let entryNode = document.createElement('li');
         entryNode.classList.add('query-criteria');
         let criteriaNode = document.createElement('div');
-        criteriaNode.innerHTML = `<span>${item.property}</span><span>=</span><span>${item.value}</span>`;
+        criteriaNode.innerHTML = `<span>${item.property}</span><span>${item.operator}</span><span>${item.value}</span>`;
         entryNode.appendChild(criteriaNode);
         entryNode.appendChild(createRemoveButton(() => removeCriteriaFn(criteria, item)));
         CRITERIA_LIST_UI.appendChild(entryNode)
@@ -32,41 +32,67 @@ function toggleQueryBuilder(continueFunction) {
     CONTINUE_BUTTON.onclick = continueFunction;
 }
 
+
+function resetSelect(select, valueCollection) {
+    select.innerHTML = '<option value="none">-Auswählen-</option>';
+    select.value = 'none';
+    valueCollection.forEach(value => {
+        let option = document.createElement('option');
+        option.innerText = value;
+        select.appendChild(option);
+    });
+}
+
 /* fill the property dropdown with the available properties in the game (COLOR, SHAPE, COUNT, FILL)*/
 function initPropertySelect(criteria, update) {
     const propertySelect = document.getElementById("property-select");
-    propertySelect.innerHTML = '<option value="none">-Auswählen-</option>';
-    propertySelect.value = 'none';
+    const operatorSelect = document.getElementById("operator-select");
 
-    CARD_PROPERTIES.forEach(property => {
-        let option = document.createElement('option');
-        option.innerText = property;
-        propertySelect.appendChild(option);
-    })
+    resetSelect(propertySelect, CARD_PROPERTIES);
+
+    let selectedProperty;
     propertySelect.onchange = event => {
-        populateValueSelect(event.target.value, criteria, update);
+        selectedProperty = event.target.value;
+
+        if (propertySelect.selectedIndex > 0) {
+            operatorSelect.classList.remove('d-none');
+            resetSelect(operatorSelect, OPERATORS);
+        } else
+            operatorSelect.classList.add('d-none');
+    }
+
+    operatorSelect.onchange = () => {
+        const valueSelect = document.getElementById("value-select");
+
+        if (operatorSelect.selectedIndex > 0) {
+            let selectedOperator = OPERATORS[operatorSelect.selectedIndex - 1];
+            populateValueSelect(selectedProperty, selectedOperator, criteria, update);
+            valueSelect.classList.remove('d-none');
+        } else
+            valueSelect.classList.add('d-none');
     }
 }
 
+
 /* fill the value dropdown with the values of the selected property (e.g. RED,... if COLOR is selected)*/
-function populateValueSelect(property, criteria, update) {
+function populateValueSelect(property, operator, criteria, update) {
     const valueSelect = document.getElementById("value-select");
 
-    function resetValueSelect() {
-        valueSelect.innerHTML = '<option value="none">-Auswählen-</option>';
-    }
 
-    resetValueSelect();
-    CARD_VALUES[property].forEach(value => {
-        let option = document.createElement('option');
-        option.innerText = value;
-        valueSelect.appendChild(option);
-    });
+    resetSelect(valueSelect, CARD_VALUES[property]);
 
     valueSelect.onchange = (event) => {
-        criteria.push({'property': property, 'value': event.target.value});
+        criteria.push({
+            'property': property,
+            'operator': operator,
+            'value': event.target.value
+        });
         update();
         initPropertySelect(criteria, update);
-        resetValueSelect();
+
+
+        let operatorSelect = document.getElementById("operator-select");
+        operatorSelect.classList.add('d-none');
+        valueSelect.classList.add('d-none');
     }
 }

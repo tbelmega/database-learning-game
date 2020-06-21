@@ -7,6 +7,7 @@ const SHAPES = ['RECT', 'OVAL', 'DIAMOND'];
 const COUNTS = ['1', '2', '3'];
 const FILLS = ['FULL', 'TRANSPARENT', 'EMPTY'];
 const CARD_VALUES = {COLOR: COLORS, SHAPE: SHAPES, COUNT: COUNTS, FILL: FILLS}
+const OPERATORS = ['=', '!='];
 
 /* generate all 81 cards for the game from all possible combinations of property values  */
 const ALL_CARDS = [];
@@ -34,4 +35,4 @@ const SCORE_PENALTY_FOR_MORE_CARDS = 20;
 const MAX_CARDS_ON_BOARD = 18;
 const MIN_CARDS_ON_BOARD = 6;
 
-const MAX_GAME_TIME_SECONDS = 5;
+const MAX_GAME_TIME_SECONDS = 300;
