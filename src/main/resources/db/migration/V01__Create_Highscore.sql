@@ -1,0 +1,5 @@
+CREATE TABLE highscore(
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    player_name VARCHAR(64) NOT NULL,
+    score BIGINT NOT NULL
+);

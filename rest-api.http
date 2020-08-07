@@ -1,0 +1,18 @@
+GET http://localhost:8080/api/highscore
+Accept: */*
+Cache-Control: no-cache
+
+<> 2020-08-02T114432.200.json
+<> 2020-08-02T114354.200.json
+<> 2020-08-02T114345.404.json
+
+###
+
+POST http://localhost:8080/api/highscore
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"playerName":"Chuck Norris", "score":1000000}
+
+###
