@@ -5,7 +5,7 @@ import de.belmega.databaselearninggame.model.HighscoreResponse
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/highscore")
+@RequestMapping("/api/highscore")
 class HighscoreController (
    val highscoreRepository: HighscoreRepository
 ) {
