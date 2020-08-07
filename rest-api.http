@@ -1,4 +1,4 @@
-GET http://localhost:8080/api/highscore
+GET http://localhost:5000/api/highscore
 Accept: */*
 Cache-Control: no-cache
 
@@ -8,11 +8,14 @@ Cache-Control: no-cache
 
 ###
 
-POST http://localhost:8080/api/highscore
+POST http://localhost:5000/api/highscore
 Accept: */*
 Cache-Control: no-cache
 Content-Type: application/json
 
-{"playerName":"Chuck Norris", "score":1000000}
+{
+  "playerName": "Chuck Norris",
+  "score": 1000000
+}
 
 ###
