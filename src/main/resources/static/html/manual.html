@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Anleitung</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="../css/styles.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4 elevate">
+    <a class="navbar-brand" href="#"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto" id="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Anleitung<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Lernen</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../index.html">Spielen</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Highscore</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <h2>Inhalt</h2>
+    <ul class="list-unstyled">
+        <li><a href="#basics">Spielprinzip</a></li>
+        <li><a href="#whats-a-set">Was ist ein "Set"?</a></li>
+        <li><a href="#modes">Lernmodus und Spielmodus</a></li>
+        <li><a href="#databases">Datenbanken</a></li>
+    </ul>
+
+    <h1><a id="basics"></a>Das Spielprinzip</h1>
+    <p>Das Database Learning Game ist angelehnt an das Kartenspiel <a href="https://de.wikipedia.org/wiki/Set_(Spiel)">Set</a>.
+        Du suchst aus den zwölf aufgedeckten Karten eine Kombination aus drei Karten, die ein sogenanntes <b>Set</b>
+        bilden. Was ein Set ist, erklären wir gleich.</p>
+    <img class="manual-image" src="../images/manual/board.jpg">
+    <p class="manual-image-description">Der Spieltisch mit 12 Karten.</p>
+
+    <p>Im Gegensatz zum Kartenspiel kannst du die gewünschten Set-Karten nicht direkt auswählen. Stattdessen musst
+        du eine <b>Abfrage</b> erzeugen, die einen Teil der Karten herausfiltert.</p>
+    <img class="manual-image" src="../images/manual/query.jpg">
+    <p class="manual-image-description">Der Abfrage-Baukasten.</p>
+
+    <p>Erfüllen die verbliebenen Karten die Anforderungen eines Sets, erhälst du 30 Punkte. Die drei Set-Karten werden
+        vom Tisch entfernt und die verbliebenen Karten gegebenenfalls auf zwölf Karten aufgefüllt.</p>
+    <img class="manual-image" src="../images/manual/set.jpg">
+    <p class="manual-image-description">Set gefunden.</p>
+
+    <p>Kommst du mal nicht weiter, kannst du drei zusätzliche Karten aufdecken, um mehr Auswahl zu haben - das kostet
+        dich aber 20 Minuspunkte!</p>
+
+    <h2><a id="whats-a-set"></a>Was ist ein Set?</h2>
+    <p>Jede Karte hat vier Eigenschaften: Farbe, Form, Füllung und Anzahl.</p>
+    <p>Drei Karten bilden dann ein Set, wenn sie in jedes dieser Eigenschaften entweder alle gleich oder alle
+        verschieden sind.</p>
+    <p>Sie bilden <i>kein</i> Set, wenn zwei von ihnen in einer Eigenschaft gleich sind und die dritte Karte verschieden
+        ist.</p>
+    <p>Am besten verstehst du Sets mit einigen Beispielen:</p>
+    <h3>Beispiele für Sets</h3>
+
+    <div class="d-flex flex-row">
+        <img class="card" src="../images/cards/blue-diamond-1-empty.png">
+        <img class="card" src="../images/cards/blue-diamond-1-full.png">
+        <img class="card" src="../images/cards/blue-diamond-1-transparent.png">
+    </div>
+    <p class="manual-image-description">Diese Karten bilden ein Set, denn Farbe, Form und Anzahl sind bei allen drei
+        Karten gleich, und die Füllung ist bei allen drei Karten verschieden.</p>
+
+    <div class="d-flex flex-row">
+        <img class="card" src="../images/cards/red-diamond-2-full.png">
+        <img class="card" src="../images/cards/red-oval-2-full.png">
+        <img class="card" src="../images/cards/red-rect-2-full.png">
+    </div>
+    <p class="manual-image-description">Diese Karten bilden ein Set, denn Farbe, Füllung und Anzahl sind bei allen drei
+        Karten gleich, und die Form ist bei allen drei Karten verschieden.</p>
+
+    <div class="d-flex flex-row">
+        <img class="card" src="../images/cards/red-oval-1-empty.png">
+        <img class="card" src="../images/cards/blue-oval-2-transparent.png">
+        <img class="card" src="../images/cards/green-oval-3-full.png">
+    </div>
+    <p class="manual-image-description">Diese Karten bilden ein Set, denn die Form ist bei allen drei Karten gleich, und
+        Anzahl, Füllung und Farbe sind bei allen drei Karten verschieden.</p>
+
+    <h3>Gegenbeispiele</h3>
+    <div class="d-flex flex-row">
+        <img class="card" src="../images/cards/blue-diamond-1-empty.png">
+        <img class="card" src="../images/cards/blue-diamond-1-full.png">
+        <img class="card" src="../images/cards/blue-diamond-2-transparent.png">
+    </div>
+    <p class="manual-image-description">Kein Set, denn die Anzahl ist bei zwei Karten gleich und bei der dritten
+        verschieden.</p>
+
+    <div class="d-flex flex-row">
+        <img class="card" src="../images/cards/red-oval-1-empty.png">
+        <img class="card" src="../images/cards/blue-oval-2-transparent.png">
+        <img class="card" src="../images/cards/green-rect-3-empty.png">
+    </div>
+    <p class="manual-image-description">Kein Set, denn Füllung und Form sind bei zwei Karten gleich und bei der dritten
+        verschieden.</p>
+
+
+    <h1><a id="modes"></a>Lernmodus und Spielmodus</h1>
+    <p>Im Modus <b>Lernen</b> kannst findest du vorgefertigte Tisch-Konstellationen und erzeugst Abfragen, um die darin
+        versteckten Sets zu finden. Die Aufgaben beginnen leicht und werden zunehmen schwerer.</p>
+    <p>Im Modus <b>Spielen</b> hast du 5 Minuten Zeit, um so viele Punkte wie möglich zu erreichen. Trage dich nach dem
+        Spiel in die Highscore-Liste ein, um deine Leistung online mit deinen Freunden zu vergleichen.</p>
+
+    <h1><a id="databases"></a>Datenbanken</h1>
+    <p>Eine Datenbank ist der Speicher, der hinter den meisten üblichen Webanwendungen steht, wie z.B. Shops, Wikipedia
+        oder Online-Klassenräumen. Die Webanwendungen greifen mit <b>SQL-Abfragen</b> auf Tabellen dieser Datenbanken
+        zu, um die benötigten Daten auszuwählen.</p>
+    <p>Datenbankabfragen funktionieren genauso wie die Abfragen im Set-Spiel. Wenn du geübt hast Set-Karten anhand von
+        Kriterien aus der Menge auszuwählen, wird es dir leichtfallen die Programmiersprache SQL zu lernen.</p>
+    <p>So sieht eine Datenbankfrage in SQL aus. Erkennst du die Abfrage wieder?</p>
+
+    <img class="manual-image" src="../images/manual/sql.jpg">
+
+</div>
+
+
+</body>
+</html>

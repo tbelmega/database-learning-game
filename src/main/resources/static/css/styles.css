@@ -84,3 +84,12 @@ a.navbar-brand {
 .max-width-400 {
     max-width: 400px;
 }
+
+.manual-image {
+    border: 1px solid lightgray;
+}
+
+.manual-image-description {
+    font-weight: bold;
+    font-size: 10px;
+}

@@ -20,7 +20,7 @@ function shuffleUpAndDeal(board, maxNumberOfCards) {
     return board;
 }
 
-/* update the "match" property of every card according to current filters */
+/* gray out cards by updating the "match" property of every card according to current filters. */
 function filterBoard(board, criteria) {
     board.forEach(card => {
         card.match = criteria.every(item => {
@@ -38,6 +38,7 @@ function filterBoard(board, criteria) {
     });
 }
 
+/* main game function */
 function runGame() {
 
     // represents the query selection criteria currently set by the user

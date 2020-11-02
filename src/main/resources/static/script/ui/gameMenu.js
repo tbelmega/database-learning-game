@@ -1,3 +1,5 @@
+/* show and hide screens before and after the game. see index.html for the content */
+
 const GAME_MENU = document.getElementById("game-menu");
 const GAME_RUNNING_SCREEN = document.getElementById("game-running");
 const NAV_LINKS = $(".nav-link");

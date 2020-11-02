@@ -1,4 +1,4 @@
-/* draw the criteria list to screen */
+/* draw the criteria list to screen. criteria list is the list of user-selected criteria, e.g. "SHAPE = RECT" and so on. */
 function drawCriteriaList(criteria, removeCriteriaFn) {
     const CRITERIA_LIST_UI = document.getElementById("criteria-list");
     CRITERIA_LIST_UI.innerHTML = '';
@@ -32,7 +32,7 @@ function toggleQueryBuilder(continueFunction) {
     CONTINUE_BUTTON.onclick = continueFunction;
 }
 
-
+/* fill a select (dropdown) with given values */
 function resetSelect(select, valueCollection) {
     select.innerHTML = '<option value="none">-Auswählen-</option>';
     select.value = 'none';

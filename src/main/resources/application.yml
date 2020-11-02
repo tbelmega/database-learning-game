@@ -2,6 +2,6 @@ server.port: 5000
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/database-learning-game?serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/databaselearninggame?serverTimezone=UTC
     username: local
     password: 89wObZGU2hlu4uoN8tdw

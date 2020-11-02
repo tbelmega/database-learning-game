@@ -1,3 +1,5 @@
+/* the "score" section of the UI holds the current player score, timer and buttons to add/remove cards */
+
 function drawScore(score) {
     const SCORE_UI = document.getElementById("score");
     SCORE_UI.innerText = score;
