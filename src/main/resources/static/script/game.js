@@ -1,41 +1,9 @@
-/* fill the board with 12 new random cards */
-function shuffleUpAndDeal(board, maxNumberOfCards) {
-
-    /* check if card with same ID is already on the board. otherwise add card to board.*/
-    function addCardIfNotYetOnBoard(card, board) {
-        const positionOfCardOnBoard = board.findIndex(element => element.id === card.id, card);
-
-        if (positionOfCardOnBoard === NOT_THERE)
-            board.push({
-                ...card,
-                match: true
-            })
-    }
-
-    do {
-        let card = randomFrom(ALL_CARDS);
-        addCardIfNotYetOnBoard(card, board);
-    } while (board.length < maxNumberOfCards);
-
-    return board;
-}
-
-/* gray out cards by updating the "match" property of every card according to current filters. */
-function filterBoard(board, criteria) {
-    board.forEach(card => {
-        card.match = criteria.every(item => {
-            let cardValue = card[item.property.toLowerCase()];
-            let criteriaValue = item.value;
-            switch (item.operator) {
-                case '=':
-                    return cardValue === criteriaValue;
-                case '!=':
-                    return cardValue !== criteriaValue;
-                default:
-                    throw new Error('Unhandled Operator');
-            }
-        });
-    });
+function renderSqlQueryFromCriteria(criteria) {
+    let whereClause = criteria.map(crit => crit.property.toLowerCase() + " " + crit.operator + " '" + crit.value.toLowerCase() + "'").join(" AND ");
+    if (whereClause) whereClause = " WHERE " + whereClause;
+    console.log(criteria);
+    console.log(whereClause);
+    return '<code>SELECT * FROM cards' + whereClause + ';</code>';
 }
 
 /* main game function */
@@ -106,6 +74,7 @@ function runGame() {
         let setFound = checkIfSetFound(board);
         if (setFound.isSet) {
             score += SCORE_FOR_FOUND_SET;
+            document.getElementById('sql-code').innerHTML = renderSqlQueryFromCriteria(criteria);
             drawScore(score);
             toggleQueryBuilder(() => {
                 removeFoundSetFromBoard(setFound.cards);

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Database Learning Game</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="../css/styles.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4 elevate">
+    <a class="navbar-brand" href="#"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto" id="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="manual.html">Anleitung</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Lernen</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Spielen<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="sandbox.html">SQL-Sandbox</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Highscore</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- GAME MENU -->
+<div class="container" id="game-menu">
+    <div class="d-flex flex-column align-items-center" id="start-game-section">
+        <h3>Finde in 5 Minuten so viele Sets wie du kannst!</h3>
+        <button class="btn btn-primary" id="btn-start-game">Start</button>
+    </div>
+    <div class="d-none flex-column align-items-center" id="score-section">
+        <h3>Gut gemacht!</h3>
+        <p>Deine Punktzahl:</p>
+        <h4 id="final-score"></h4>
+        <p>Willst du dich in die Highscore-Liste eintragen?</p>
+        <div class="input-group mb-3 max-width-400">
+            <input type="text" class="form-control" placeholder="Dein Name">
+            <div class="input-group-append">
+                <button class="btn btn-outline-primary" type="button">Absenden</button>
+            </div>
+        </div>
+        <button class="btn btn-primary" id="btn-restart-game">Neues Spiel</button>
+    </div>
+</div>
+
+<!-- GAME SCREEN -->
+<div class="container d-none" id="game-running">
+    <div class="d-flex justify-content-between">
+        <div id="query-builder" class="mb-2">
+            <h3>Wähle alle Karten, bei denen...</h3>
+            <ul id="criteria-list" class="criteria-list"></ul>
+            <select id="property-select">
+                <option>-Auswählen-</option>
+            </select>
+            <select id="operator-select" class="d-none">
+                <option>-Auswählen-</option>
+            </select>
+            <select id="value-select" class="d-none">
+                <option>-Auswählen-</option>
+            </select>
+        </div>
+        <div id="set-found-continue" class="mb-2 d-none">
+            <h3>Set!</h3>
+            <p>Super, du hast ein Set gefunden.</p>
+            <p>So sieht deine Abfrage in SQL aus:</p>
+            <div id="sql-code">
+
+            </div>
+            <button id="continue"
+                    class="btn btn-primary mt-2">
+                Weiter
+            </button>
+        </div>
+        <div>
+            <div>
+                <span>Punkte:</span>
+                <span id="score"></span>
+            </div>
+            <div>
+                <span>Zeit:</span>
+                <span id="game-clock">0:00</span>
+            </div>
+            <div>
+                <button id="add-cards" class="btn btn-outline-primary">Mehr Karten</button>
+                <button id="remove-cards" class="btn btn-outline-primary">Weniger Karten</button>
+            </div>
+        </div>
+    </div>
+    <div id="board" class="card-board"></div>
+</div>
+
+<!-- SCRIPTS -->
+<!-- don't change the order of the scripts. later scripts rely on earlier scripts to be loaded first. -->
+<script src="../script/utils.js"></script>
+<script src="../script/constants.js"></script>
+<script src="../script/shuffle.js"></script>
+<script src="../script/ui/queryBuilder.js"></script>
+<script src="../script/ui/score.js"></script>
+<script src="../script/ui/board.js"></script>
+<script src="../script/ui/gameMenu.js"></script>
+<script src="../script/game.js"></script>
+</body>
+</html>

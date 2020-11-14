@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SQL-Sandbox</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="../css/styles.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4 elevate">
+    <a class="navbar-brand" href="#"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto" id="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="manual.html#">Anleitung</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Lernen</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="game.html">Spielen</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="sandbox.html">SQL-Sandbox<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Highscore</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <div>
+        <h1>Sandbox</h1>
+        <p>Experimentiere mit SQL-Code! Tippe deine Abfrage ein, und klicke auf 'Ausführen', wenn du fertig bist.</p>
+        <div class="input-group mb-3">
+            <input id="sql-statement-input" type="text" class="form-control" placeholder="SQL-Abfrage"
+                   value="SELECT * FROM board1 WHERE color = 'blue';">
+            <div class="input-group-append">
+                <button id='execute-sql' class="btn btn-primary" type="button">Ausführen</button>
+            </div>
+        </div>
+        <div id="parse-output"></div>
+    </div>
+    <div class="d-flex flex-row justify-content-between mt-5">
+        <div>
+            <h1>Board 1</h1>
+            <div id="board1" class="card-board"></div>
+        </div>
+        <div>
+            <h1>Board 2</h1>
+            <div id="board2" class="card-board"></div>
+        </div>
+    </div>
+</div>
+
+<script src="../script/utils.js"></script>
+<script src="../script/constants.js"></script>
+<script src="../script/shuffle.js"></script>
+<script src="../script/ui/board.js"></script>
+<script src="../script/sandbox.js"></script>
+
+</body>
+</html>
