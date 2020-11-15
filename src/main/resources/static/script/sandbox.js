@@ -1,11 +1,11 @@
-function executeSql(input, board1, board2) {
-    // RegEx-Literals (Regular Expressions to identify syntactically correct parts of the input)
-    // The slashes mark begin and end of regex. the i makes the regex case-insensitive
-    let SELECT_CLAUSE = /select \* /i; // select clause is always 'select *' in this sandbox
-    let FROM_CLAUSE = /from ([a-zA-Z0-9_]+)/i; // from clause begins with 'from' and has a table name
-    let WHERE_CLAUSE = / where ([a-zA-Z0-9_\s!=']+)[;]*/i; // where clause begins with 'where' and ends with optional ';'. allows letters, digits, space, ! = and '
-    let CRITERIA = /([a-zA-Z0-9_]+)(?:\s*)(=|!=)(?:\s*)'([a-zA-Z0-9_]+)'/i; // each criteria has three pieces (columname, operator and value) separated by optional space characters. value is in single quotes
+// RegEx-Literals (Regular Expressions to identify syntactically correct parts of the input)
+// The slashes mark begin and end of regex. the i makes the regex case-insensitive
+let SELECT_CLAUSE = /select \* /i; // select clause is always 'select *' in this sandbox
+let FROM_CLAUSE = /from ([a-zA-Z0-9_]+)/i; // from clause begins with 'from' and has a table name
+let WHERE_CLAUSE = / where ([a-zA-Z0-9_\s!=']+)[;]*/i; // where clause begins with 'where' and ends with optional ';'. allows letters, digits, space, ! = and '
+let CRITERIA = /([a-zA-Z0-9_]+)(?:\s*)(=|!=)(?:\s*)'([a-zA-Z0-9_]+)'/i; // each criteria has three pieces (columname, operator and value) separated by optional space characters. value is in single quotes
 
+function executeSql(input, board1, board2) {
     // check if there is a select clause
     let selectClause = input.match(SELECT_CLAUSE);
     if (!selectClause)
@@ -35,7 +35,7 @@ function executeSql(input, board1, board2) {
             board2.forEach(card => card.match = false);
             break;
     }
-    drawSandboxBoards(board1cards, board2cards);
+    drawSandboxBoards(board1, board2);
 
     if (!fromBoard) {
         return "Nenne in der From-Klausel entweder <code>board1</code> oder <code>board2</code> als Ziel deiner Abfrage."
@@ -70,17 +70,20 @@ function executeSql(input, board1, board2) {
 
     // apply criteria and draw the updated boards
     filterBoard(fromBoard, criteria);
-    drawSandboxBoards(board1cards, board2cards);
+    drawSandboxBoards(board1, board2);
+    return "Super! Deine SQL-Abfrage ist valide.";
 }
 
-let board1cards = shuffleUpAndDeal([], 12);
-let board2cards = shuffleUpAndDeal([], 12);
-drawSandboxBoards(board1cards, board2cards);
+function startSandbox() {
+    let board1cards = shuffleUpAndDeal([], 12);
+    let board2cards = shuffleUpAndDeal([], 12);
+    drawSandboxBoards(board1cards, board2cards);
 
-// bind the executeSql function to the button on the UI
-// on click, parse the input, execute sql and display feedback to user
-let sqlStatement = document.getElementById('sql-statement-input');
-document.getElementById('execute-sql').onclick = () => {
-    const validationErrorMessage = executeSql(sqlStatement.value, board1cards, board2cards);
-    document.getElementById('parse-output').innerHTML = validationErrorMessage || '';
+    // bind the executeSql function to the button on the UI
+    // on click, parse the input, execute sql and display feedback to user
+    let sqlStatement = document.getElementById('sql-statement-input');
+    document.getElementById('execute-sql').onclick = () => {
+        const validationErrorMessage = executeSql(sqlStatement.value, board1cards, board2cards);
+        document.getElementById('parse-output').innerHTML = validationErrorMessage || '';
+    }
 }
