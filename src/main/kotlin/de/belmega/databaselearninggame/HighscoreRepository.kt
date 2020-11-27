@@ -1,15 +1,15 @@
 package de.belmega.databaselearninggame
 
-import de.belmega.databaselearninggame.model.HighscoreResponse
 import org.hibernate.annotations.GenericGenerator
-import org.springframework.boot.autoconfigure.domain.EntityScan
 import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
-import javax.persistence.*
+import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.Id
 
 @Repository
 interface HighscoreRepository: CrudRepository<Highscore, Long> {
-    fun findByOrderByScore(): List<Highscore>
+    fun findByOrderByScoreDesc(): List<Highscore>
 }
 
 // no data class, since JPA is not designed to work with immutable classes, and generated equals()/hashCode()

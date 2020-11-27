@@ -12,7 +12,7 @@ class HighscoreController (
 
     @GetMapping
     fun getHighscore(): List<HighscoreResponse> {
-        return highscoreRepository.findByOrderByScore().map{
+        return highscoreRepository.findByOrderByScoreDesc().map {
             HighscoreResponse(
                     player = it.playerName,
                     score = it.score
