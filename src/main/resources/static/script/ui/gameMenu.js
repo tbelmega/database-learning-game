@@ -34,5 +34,25 @@ function backToMenu(score) {
     NAV_LINKS.removeClass('disabled');
 
     document.getElementById("btn-restart-game").onclick = () => toggleSections();
+    document.getElementById("btn-submit-highscore").onclick = () => {
+        let playerName = document.getElementById("input-player-name").value;
+        let highscoreRequestData = {
+            playerName,
+            score
+        }
+        fetch('/setgame/api/highscore', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(highscoreRequestData)
+        }).then(response => {
+            if (response.ok) {
+                let href = window.location.href;
+                let newHref = href.replace('game.html', 'highscore.html');
+                window.location.href = newHref;
+            }
+        })
+    };
     document.getElementById("final-score").innerText = score;
 }

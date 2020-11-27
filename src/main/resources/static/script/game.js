@@ -92,10 +92,17 @@ function runGame() {
                 if (gameClockSeconds <= 0) {
                     clearInterval(gameClock);
                     backToMenu(score);
+
                 }
             },
             1000
         );
+
+        const endGameBtn = document.getElementById("end-game");
+        endGameBtn.onclick = () => {
+            clearInterval(gameClock);
+            backToMenu(score);
+        }
     }
 
     update();
@@ -117,6 +124,11 @@ function runGame() {
             score -= SCORE_PENALTY_FOR_MORE_CARDS;
             update();
         }
+    });
+    initReshuffleButton(() => {
+        board = shuffleUpAndDeal([], board.length);
+        score -= SCORE_PENALTY_FOR_MORE_CARDS;
+        update();
     });
     startClock();
 }

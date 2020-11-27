@@ -47,13 +47,20 @@
         <h3>Gut gemacht!</h3>
         <p>Deine Punktzahl:</p>
         <h4 id="final-score"></h4>
-        <p>Willst du dich in die Highscore-Liste eintragen?</p>
-        <div class="input-group mb-3 max-width-400">
-            <input type="text" class="form-control" placeholder="Dein Name">
-            <div class="input-group-append">
-                <button class="btn btn-outline-primary" type="button">Absenden</button>
+        <form id="form-highscore">
+            <p>Willst du dich in die Highscore-Liste eintragen?</p>
+            <div class="input-group mb-3 max-width-400">
+                <input id="input-player-name" type="text" class="form-control" placeholder="Dein Name">
+                <div class="input-group-append">
+                    <button
+                            class="btn btn-outline-primary"
+                            type="button"
+                            id="btn-submit-highscore">
+                        Absenden
+                    </button>
+                </div>
             </div>
-        </div>
+        </form>
         <button class="btn btn-primary" id="btn-restart-game">Neues Spiel</button>
     </div>
 </div>
@@ -98,6 +105,10 @@
             <div>
                 <button id="add-cards" class="btn btn-outline-primary">Mehr Karten</button>
                 <button id="remove-cards" class="btn btn-outline-primary">Weniger Karten</button>
+                <button id="btn-reshuffle" class="btn btn-outline-primary">Neu mischen</button>
+            </div>
+            <div class="mt-4 d-flex flex-row-reverse">
+                <button id="end-game" class="btn btn-outline-primary">Beenden</button>
             </div>
         </div>
     </div>

@@ -15,6 +15,11 @@ function initRemoveCardsButton(removeCardsFunction) {
     REMOVE_CARD_BUTTON.onclick = removeCardsFunction;
 }
 
+function initReshuffleButton(reshuffleFunction) {
+    const RESHUFFLE_BUTTON = document.getElementById("btn-reshuffle");
+    RESHUFFLE_BUTTON.onclick = reshuffleFunction;
+}
+
 function updateClock(gameClockSeconds) {
     const CLOCK_UI = document.getElementById("game-clock");
     const minutes = Math.floor(gameClockSeconds / 60);
