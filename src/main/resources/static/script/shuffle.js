@@ -22,6 +22,7 @@ function shuffleUpAndDeal(board, maxNumberOfCards) {
 
 /* gray out cards by updating the "match" property of every card according to current filters. */
 function filterBoard(board, criteria) {
+    console.log(criteria);
     board.forEach(card => {
         card.match = criteria.every(item => {
             let cardValue = card[item.property.toLowerCase()].toLowerCase();

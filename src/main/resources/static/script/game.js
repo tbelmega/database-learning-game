@@ -51,13 +51,14 @@ function runGame() {
     function removeFoundSetFromBoard(cards) {
         const cardIdsToRemove = cards.map(card => card.id);
         board = board.filter(card => cardIdsToRemove.indexOf(card.id) === NOT_THERE);
-        shuffleUpAndDeal(board, 12);
+        if (board.length < 12)
+            shuffleUpAndDeal(board, 12);
         toggleQueryBuilder();
     }
 
     function resetCriteria() {
         criteria = [];
-        initPropertySelect(criteria, update);
+        initQueryBuilder(criteria, update);
     }
 
     function removeCriteria(criteria, item) {
@@ -107,7 +108,7 @@ function runGame() {
 
     update();
     updateClock(gameClockSeconds);
-    initPropertySelect(criteria, update);
+    initQueryBuilder(criteria, update);
     initAddCardsButton(() => {
         if (board.length < MAX_CARDS_ON_BOARD) {
             shuffleUpAndDeal(board, board.length + 3);

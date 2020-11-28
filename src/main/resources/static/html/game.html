@@ -7,7 +7,13 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link href="../css/styles.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+            crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -71,20 +77,19 @@
         <div id="query-builder" class="mb-2">
             <h3>Wähle alle Karten, bei denen...</h3>
             <ul id="criteria-list" class="criteria-list mb-2"></ul>
-            <div class="btn-group mb-2" id="query-builder-btn-group" role="group">
+            <div class="btn-group btn-group-toggle mb-2"
+                 data-toggle="buttons"
+                 id="query-builder-property">
+            </div>
+            <div class="btn-group btn-group-toggle mb-2"
+                 data-toggle="buttons"
+                 id="query-builder-operator">
+            </div>
+            <div class="btn-group btn-group-toggle mb-2"
+                 data-toggle="buttons"
+                 id="query-builder-value">
+            </div>
 
-            </div>
-            <div>
-                <select id="property-select">
-                    <option>-Auswählen-</option>
-                </select>
-                <select id="operator-select" class="d-none">
-                    <option>-Auswählen-</option>
-                </select>
-                <select id="value-select" class="d-none">
-                    <option>-Auswählen-</option>
-                </select>
-            </div>
         </div>
         <div id="set-found-continue" class="mb-2 d-none">
             <h3>Set!</h3>

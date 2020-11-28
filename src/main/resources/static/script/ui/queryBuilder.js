@@ -32,81 +32,77 @@ function toggleQueryBuilder(continueFunction) {
     CONTINUE_BUTTON.onclick = continueFunction;
 }
 
-/* fill a select (dropdown) with given values */
-function resetSelect(select, valueCollection) {
-    const btnGroup = document.getElementById("query-builder-btn-group");
-    btnGroup.innerHTML = '';
-
-    select.innerHTML = '<option value="none">-Auswählen-</option>';
-    select.value = 'none';
-    valueCollection.forEach(value => {
-        let option = document.createElement('option');
-        option.innerText = value;
-        select.appendChild(option);
-
-        let btn = document.createElement('button');
-        btn.classList.add('btn', 'btn-primary');
-        btn.innerText = value;
-        btnGroup.appendChild(btn);
-        btn.onclick = () => {
-            select.value = value;
-            select.onchange({target: {value}});
-        }
-    });
-
-
-}
-
 /* fill the property dropdown with the available properties in the game (COLOR, SHAPE, COUNT, FILL)*/
-function initPropertySelect(criteria, update) {
-    const propertySelect = document.getElementById("property-select");
-    const operatorSelect = document.getElementById("operator-select");
+function initQueryBuilder(criteria, update) {
 
-    resetSelect(propertySelect, CARD_PROPERTIES);
+    const btnGroupProperty = document.getElementById("query-builder-property");
+    const btnGroupOperator = document.getElementById("query-builder-operator");
+    const btnGroupValue = document.getElementById("query-builder-value");
+
+    btnGroupProperty.innerHTML = '';
+    btnGroupOperator.innerHTML = '';
+    btnGroupValue.innerHTML = '';
 
     let selectedProperty;
-    propertySelect.onchange = event => {
-        selectedProperty = event.target.value;
+    let selectedOperator;
 
-        if (propertySelect.selectedIndex > 0) {
-            operatorSelect.classList.remove('d-none');
-            resetSelect(operatorSelect, OPERATORS);
-        } else
-            operatorSelect.classList.add('d-none');
-    }
+    function initOperatorSelector() {
+        btnGroupOperator.innerHTML = '';
+        OPERATORS.forEach(value => {
 
-    operatorSelect.onchange = () => {
-        const valueSelect = document.getElementById("value-select");
+            let label = document.createElement('label');
+            label.classList.add('btn', 'btn-primary');
+            label.innerHTML = `<input type="radio" name="options" id="option-${value}">${value}</input>`;
 
-        if (operatorSelect.selectedIndex > 0) {
-            let selectedOperator = OPERATORS[operatorSelect.selectedIndex - 1];
-            populateValueSelect(selectedProperty, selectedOperator, criteria, update);
-            valueSelect.classList.remove('d-none');
-        } else
-            valueSelect.classList.add('d-none');
-    }
-}
-
-
-/* fill the value dropdown with the values of the selected property (e.g. RED,... if COLOR is selected)*/
-function populateValueSelect(property, operator, criteria, update) {
-    const valueSelect = document.getElementById("value-select");
-
-
-    resetSelect(valueSelect, CARD_VALUES[property]);
-
-    valueSelect.onchange = (event) => {
-        criteria.push({
-            'property': property,
-            'operator': operator,
-            'value': event.target.value
+            btnGroupOperator.appendChild(label);
+            label.onclick = (event) => {
+                event.preventDefault();
+                selectedOperator = value;
+                initValueSelector();
+            };
         });
-        update();
-        initPropertySelect(criteria, update);
-
-
-        let operatorSelect = document.getElementById("operator-select");
-        operatorSelect.classList.add('d-none');
-        valueSelect.classList.add('d-none');
     }
+
+    function initValueSelector() {
+        btnGroupValue.innerHTML = '';
+        CARD_VALUES[selectedProperty].forEach(value => {
+
+            let label = document.createElement('label');
+            label.classList.add('btn', 'btn-primary');
+            label.innerHTML = `<input type="radio" name="options" id="option-${value}">${value}</input>`;
+
+            btnGroupValue.appendChild(label);
+
+            label.onclick = (event) => {
+                event.preventDefault();
+                criteria.push({
+                    property: selectedProperty,
+                    operator: selectedOperator,
+                    value: value
+                });
+                initQueryBuilder(criteria, update);
+                update();
+            };
+        });
+    }
+
+
+    function initPropertySelector() {
+        btnGroupProperty.innerHTML = '';
+        CARD_PROPERTIES.forEach(value => {
+
+            let label = document.createElement('label');
+            label.classList.add('btn', 'btn-primary');
+            label.innerHTML = `<input type="radio" name="options" id="option-${value}">${value}</input>`;
+
+            btnGroupProperty.appendChild(label);
+            label.onclick = (event) => {
+                event.preventDefault();
+                selectedProperty = value;
+                initOperatorSelector();
+            };
+        });
+    }
+
+    initPropertySelector();
 }
