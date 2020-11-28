@@ -34,13 +34,27 @@ function toggleQueryBuilder(continueFunction) {
 
 /* fill a select (dropdown) with given values */
 function resetSelect(select, valueCollection) {
+    const btnGroup = document.getElementById("query-builder-btn-group");
+    btnGroup.innerHTML = '';
+
     select.innerHTML = '<option value="none">-Auswählen-</option>';
     select.value = 'none';
     valueCollection.forEach(value => {
         let option = document.createElement('option');
         option.innerText = value;
         select.appendChild(option);
+
+        let btn = document.createElement('button');
+        btn.classList.add('btn', 'btn-primary');
+        btn.innerText = value;
+        btnGroup.appendChild(btn);
+        btn.onclick = () => {
+            select.value = value;
+            select.onchange({target: {value}});
+        }
     });
+
+
 }
 
 /* fill the property dropdown with the available properties in the game (COLOR, SHAPE, COUNT, FILL)*/
