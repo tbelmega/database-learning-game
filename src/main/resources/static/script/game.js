@@ -56,6 +56,14 @@ function runGame() {
         toggleQueryBuilder();
     }
 
+    function removeCardFromBoard(cardToRemove) {
+        let boardLength = board.length;
+        board = board.filter(card => card.id !== cardToRemove.id);
+        if (board.length < 12)
+            shuffleUpAndDeal(board, boardLength);
+        update();
+    }
+
     function resetCriteria() {
         criteria = [];
         initQueryBuilder(criteria, update);
@@ -69,7 +77,7 @@ function runGame() {
 
     function update() {
         filterBoard(board, criteria);
-        drawBoard(board);
+        drawBoard(board, removeCardFromBoard);
         drawScore(score);
         drawCriteriaList(criteria, removeCriteria);
         let setFound = checkIfSetFound(board);

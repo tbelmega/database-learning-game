@@ -56,6 +56,7 @@ function initQueryBuilder(criteria, update) {
 
             btnGroupOperator.appendChild(label);
             label.onclick = (event) => {
+                label.classList.add('active');
                 event.preventDefault();
                 selectedOperator = value;
                 initValueSelector();
@@ -74,6 +75,7 @@ function initQueryBuilder(criteria, update) {
             btnGroupValue.appendChild(label);
 
             label.onclick = (event) => {
+                label.classList.add('active');
                 event.preventDefault();
                 criteria.push({
                     property: selectedProperty,
@@ -97,6 +99,7 @@ function initQueryBuilder(criteria, update) {
 
             btnGroupProperty.appendChild(label);
             label.onclick = (event) => {
+                label.classList.add('active');
                 event.preventDefault();
                 selectedProperty = value;
                 initOperatorSelector();
