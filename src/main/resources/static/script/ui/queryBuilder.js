@@ -70,7 +70,7 @@ function initQueryBuilder(criteria, update) {
 
             let label = document.createElement('label');
             label.classList.add('btn', 'btn-primary');
-            label.innerHTML = `<img src="../images/buttons/${value}.png" class="btn-icon mr-2"/>
+            label.innerHTML = `<img src="../images/buttons/${value.toLowerCase()}.png" class="btn-icon mr-2"/>
                                 <span>${value}</span>`;
 
             btnGroupValue.appendChild(label);
