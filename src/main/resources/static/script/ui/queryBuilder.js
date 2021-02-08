@@ -70,7 +70,8 @@ function initQueryBuilder(criteria, update) {
 
             let label = document.createElement('label');
             label.classList.add('btn', 'btn-primary');
-            label.innerHTML = `<input type="radio" name="options" id="option-${value}">${value}</input>`;
+            label.innerHTML = `<img src="../images/buttons/${value}.png" class="btn-icon mr-2"/>
+                                <span>${value}</span>`;
 
             btnGroupValue.appendChild(label);
 
@@ -95,7 +96,8 @@ function initQueryBuilder(criteria, update) {
 
             let label = document.createElement('label');
             label.classList.add('btn', 'btn-primary');
-            label.innerHTML = `<input type="radio" name="options" id="option-${value}">${value}</input>`;
+            const text = CARD_PROPERTIES_TRANSLATIONS[value];
+            label.innerHTML = `<input type="radio" name="options" id="option-${value}">${text}</input>`;
 
             btnGroupProperty.appendChild(label);
             label.onclick = (event) => {

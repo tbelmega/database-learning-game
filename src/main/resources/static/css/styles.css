@@ -97,3 +97,8 @@ a.navbar-brand {
     font-weight: bold;
     font-size: 10px;
 }
+
+.btn-icon {
+    height: 16px;
+    margin: 2px;
+}

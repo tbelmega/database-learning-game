@@ -2,6 +2,12 @@
 
 /* all available property values for cards in the game */
 const CARD_PROPERTIES = ['COLOR', 'SHAPE', 'COUNT', 'FILL'];
+const CARD_PROPERTIES_TRANSLATIONS = {
+    COLOR: 'Farbe',
+    SHAPE: 'Form',
+    COUNT: 'Anzahl',
+    FILL: 'Füllung'
+};
 const COLORS = ['RED', 'BLUE', 'GREEN'];
 const SHAPES = ['RECT', 'OVAL', 'DIAMOND'];
 const COUNTS = ['1', '2', '3'];

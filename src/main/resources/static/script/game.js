@@ -1,8 +1,10 @@
 function renderSqlQueryFromCriteria(criteria) {
-    let whereClause = criteria.map(crit => crit.property.toLowerCase() + " " + crit.operator + " '" + crit.value.toLowerCase() + "'").join(" AND ");
+    let whereClause = criteria.map(crit =>
+        crit.property.toLowerCase() + " "
+        + crit.operator + " '"
+        + crit.value.toLowerCase() + "'")
+        .join(" AND ");
     if (whereClause) whereClause = " WHERE " + whereClause;
-    console.log(criteria);
-    console.log(whereClause);
     return '<code>SELECT * FROM cards' + whereClause + ';</code>';
 }
 

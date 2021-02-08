@@ -1,20 +1,31 @@
 // RegEx-Literals (Regular Expressions to identify syntactically correct parts of the input)
 // The slashes mark begin and end of regex. the i makes the regex case-insensitive
-let SELECT_CLAUSE = /select \* /i; // select clause is always 'select *' in this sandbox
-let FROM_CLAUSE = /from ([a-zA-Z0-9_]+)/i; // from clause begins with 'from' and has a table name
-let WHERE_CLAUSE = / where ([a-zA-Z0-9_\s!=']+)[;]*/i; // where clause begins with 'where' and ends with optional ';'. allows letters, digits, space, ! = and '
-let CRITERIA = /([a-zA-Z0-9_]+)(?:\s*)(=|!=)(?:\s*)'([a-zA-Z0-9_]+)'/i; // each criteria has three pieces (columname, operator and value) separated by optional space characters. value is in single quotes
+
+// select clause is always 'select *' in this sandbox
+let SELECT_CLAUSE = /select \* /i;
+
+// from clause begins with 'from' and has a table name
+let FROM_CLAUSE = /from ([a-zA-Z0-9_]+)/i;
+
+// where clause begins with 'where' and ends with optional ';'. allows letters, digits, space, ! = and '
+let WHERE_CLAUSE = / where ([a-zA-Z0-9_\s!=']+)[;]*/i;
+
+// each criteria has three pieces (columname, operator and value) separated by optional space characters. value is in single quotes
+let CRITERIA = /([a-zA-Z0-9_]+)(?:\s*)(=|!=)(?:\s*)'([a-zA-Z0-9_]+)'/i;
 
 function executeSql(input, board1, board2) {
     // check if there is a select clause
     let selectClause = input.match(SELECT_CLAUSE);
     if (!selectClause)
-        return "Deine SQL-Abfrage muss mit einer Select-Klausel beginnen: <code>SELECT *</code>";
+        return "Deine SQL-Abfrage muss mit einer Select-Klausel beginnen: " +
+            "<code>SELECT *</code>";
 
     // check if there is a from clause
     let fromClause = input.match(FROM_CLAUSE);
     if (!fromClause)
-        return "Deine SQL-Abfrage braucht eine From-Klausel. Die From-Klausel bestimmt, von welchem Board du Karten auswählen willst: <code>FROM board1</code>";
+        return "Deine SQL-Abfrage braucht eine From-Klausel. " +
+            "Die From-Klausel bestimmt, von welchem Board du Karten auswählen willst: " +
+            "<code>FROM board1</code>";
 
     // activate cards from the board thats defined in the from clause
     let fromBoard;
